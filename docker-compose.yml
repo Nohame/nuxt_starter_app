@@ -1,0 +1,30 @@
+version: '3.8'
+
+# DEVELOPMENT
+services:
+  # Nuxt Application
+  web_app:
+    build:
+      context : .
+      dockerfile : Dockerfile
+      args:
+        NUXT_HOST: ${NUXT_HOST:-0.0.0.0}
+        NUXT_PORT: ${NUXT_PORT:-3000}
+        APP_NAME: ${APP_NAME:-nuxt}
+        NODE_VERSION: ${NODE_VERSION:-20}
+    container_name: ${APP_NAME:-nuxt}
+    ports:
+      - ${NUXT_HOST:-0.0.0.0}:${NUXT_PORT:-3000}:${NUXT_PORT:-3000}
+    volumes:
+      - ./:/usr/src/app
+      - ~/.ssh:/root/.ssh
+    command: >
+      bash -c "
+      cd ${APP_NAME:-nuxt} ;
+      npm run dev ;
+      tail -f .dockerenv"
+
+networks:
+  default:
+    name: ${NETWORK:-nuxt}
+    external: true
