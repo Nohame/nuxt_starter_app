@@ -10,6 +10,7 @@ ENV NUXT_PORT=${NUXT_PORT}
 ENV APP_NAME=${APP_NAME}
 
 RUN apk add --no-cache bash
+RUN echo "alias ll='ls -lisa'" >> ~/.bashrc
 
 WORKDIR /usr/src/app
 
