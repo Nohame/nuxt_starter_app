@@ -22,6 +22,7 @@ services:
       bash -c "
       rm /tmp/nitro/worker-29-1.sock ;
       cd ${APP_NAME:-nuxt} ;
+      npm install ;
       npm run dev ;
       tail -f .dockerenv"
 
