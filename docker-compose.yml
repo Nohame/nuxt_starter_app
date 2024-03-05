@@ -20,6 +20,7 @@ services:
       - ~/.ssh:/root/.ssh
     command: >
       bash -c "
+      rm /tmp/nitro/worker-29-1.sock ;
       cd ${APP_NAME:-nuxt} ;
       npm run dev ;
       tail -f .dockerenv"

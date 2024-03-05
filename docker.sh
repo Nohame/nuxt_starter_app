@@ -117,7 +117,7 @@ then
     #
     # Start up app
     #
-    docker_start "$2" "$3"
+    docker_start
 
 # restart: ## Restart docker-compose
 elif [ $action = 'restart' ]
@@ -131,13 +131,7 @@ then
 # ssh: ## Connect ssh to app container
 elif [ $action = 'ssh' ]
 then
-    if [ $2 ]
-    then
-      path="/usr/src/app/$2"
-      printf "Connect ssh to $path in $APP_NAME container \n"
-      docker exec -e COLUMNS="`tput cols`" -e LINES="`tput lines`" --workdir $path -ti $APP_NAME bash || echo "`tput setab 1`Error: Bad destination => $path `tput sgr0`"
-    else
-      echo "Connect ssh to $APP_NAME container \n"
-      docker exec -e COLUMNS="`tput cols`" -e LINES="`tput lines`" -ti $APP_NAME bash
-    fi
+   path="/usr/src/app/$APP_NAME"
+   printf "Connect ssh to $path in $APP_NAME container \n"
+   docker exec -e COLUMNS="`tput cols`" -e LINES="`tput lines`" --workdir $path -ti $APP_NAME bash || echo "`tput setab 1`Error: Bad destination => $path `tput sgr0`"
 fi
