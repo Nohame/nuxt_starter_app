@@ -20,7 +20,7 @@ services:
       - ~/.ssh:/root/.ssh
     command: >
       bash -c "
-      rm /tmp/nitro/worker-29-1.sock ;
+      find /tmp/nitro -name 'worker-*-*.sock' -exec rm {} + ;
       cd ${APP_NAME:-nuxt} ;
       npm install ;
       npm run dev ;
