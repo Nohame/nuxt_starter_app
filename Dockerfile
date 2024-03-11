@@ -9,7 +9,7 @@ ENV NUXT_HOST=${NUXT_HOST}
 ENV NUXT_PORT=${NUXT_PORT}
 ENV APP_NAME=${APP_NAME}
 
-RUN apk add --no-cache bash
+RUN apk add --no-cache bash unzip rsync curl screen nano git
 RUN echo "alias ll='ls -lisa'" >> ~/.bashrc
 
 WORKDIR /usr/src/app
